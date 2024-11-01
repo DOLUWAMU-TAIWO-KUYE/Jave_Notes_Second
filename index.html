@@ -1,0 +1,1494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Notes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 10px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        h1 {
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 5px;
+        }
+        code {
+            background-color: #e8e8e8;
+            padding: 2px 4px;
+            font-size: 1.1em;
+            border-radius: 3px;
+            color: #d14;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-left: 3px solid #3498db;
+            overflow-x: auto;
+            font-size: 1em;
+            line-height: 1.4;
+            margin-bottom: 20px;
+        }
+        section {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Java Anatomy of a Java Program</h1>
+
+<h2>Functions</h2>
+<p>A function is a block of code that performs specific tasks.</p>
+<ul>
+    <li><strong>Return Type:</strong> A function must have a specific return type. If it returns nothing, use <code>void</code>.</li>
+</ul>
+<p><strong>Example:</strong></p>
+<pre><code>Void Name() {
+    // Code block
+}  // Left brace on the same line where we define our functions
+</code></pre>
+
+<hr>
+
+<h2>Main Method</h2>
+<p>The <code>main</code> method is the entry point to a Java program and must always belong to a class.</p>
+<p><strong>Example:</strong></p>
+<pre><code>public class Main {
+    private Void main() {
+        // Code block
+    }
+}</code></pre>
+<p><strong>Related Functions:</strong> The <code>main</code> method is a function that belongs to a class. Methods like <code>void main</code> are defined within classes like <code>Main</code>.</p>
+
+<hr>
+
+<h2>Access Modifiers</h2>
+<ul>
+    <li><strong>Public:</strong> Accessible from any other class.</li>
+    <li><strong>Private:</strong> Accessible only within the class it’s defined.</li>
+</ul>
+
+<hr>
+
+<h2>Naming Conventions</h2>
+<ul>
+    <li><strong>Classes:</strong> Use PascalCase (capitalize the first letter of each word, e.g., <code>MainClass</code>).</li>
+    <li><strong>Methods:</strong> Use camelCase (start with a lowercase letter, capitalize each new word, e.g., <code>calculateSum</code>).</li>
+</ul>
+
+<hr>
+
+<h2>Base Package</h2>
+<p><strong>Purpose:</strong> Groups related classes under a common namespace.</p>
+<p><strong>Naming:</strong> Typically, the reversed domain name of the organization (e.g., <code>com.companyname.project</code>).</p>
+
+<hr>
+
+<h2>Java Compiler and Bytecode</h2>
+<ul>
+    <li><strong>Compilation:</strong> Java source code is compiled into bytecode, producing <code>.class</code> files (e.g., <code>Main.class</code>).</li>
+    <li><strong>Platform Independence:</strong> The compiled <code>main.class</code> file can run on any platform with the Java Runtime Environment (JRE).</li>
+</ul>
+
+<hr>
+
+<h2>Tips and Best Practices</h2>
+<ul>
+    <li><strong>String Concatenation:</strong> No brackets are needed for concatenation.</li>
+</ul>
+<pre><code>System.out.print("Hello " + "World");</code></pre>
+
+<hr>
+
+<h1>Working with Classes</h1>
+
+<h2>Constructors</h2>
+<p>A constructor is a special method used to initialize objects.</p>
+<p><strong>Creating a Constructor:</strong> First, define the class, then create a constructor. In the main method, you can create a new instance of the class using the constructor syntax.</p>
+<p><strong>Example:</strong></p>
+<pre><code>Class_name instance = new Constructor();
+</code></pre>
+
+<h2>Constructor Parameters</h2>
+<ul>
+    <li><strong>Formal Parameter:</strong> Placeholder in the constructor, e.g., <code>String carColor</code>.</li>
+    <li><strong>Actual Parameter (Argument):</strong> The real value passed during object creation, e.g., <code>"blue"</code>.</li>
+    <li><strong>Assignment:</strong> Inside the constructor, assign parameter values to instance fields.</li>
+</ul>
+<p><strong>Example:</strong></p>
+<pre><code>public class Car {
+    public String color;
+    public int mpg;
+    
+    public Car(String carColor, int milesPerGallon) {
+        color = carColor;
+        mpg = milesPerGallon;
+    }
+}
+</code></pre>
+
+<p><strong>Multiple Constructors:</strong> A class can have more than one constructor with different parameter lists, allowing flexible object creation.</p>
+<p><strong>Default Constructor:</strong> Automatically provided if no constructor is defined, assigning default values.</p>
+
+<hr>
+
+<h2>Full Example: Dog Class</h2>
+<p>Below is a full example of a <code>Dog</code> class with a constructor and additional methods.</p>
+<pre><code>public class Dog {
+    String breed;
+    boolean hasOwner;
+    int age;
+    String color;
+    String country;
+  
+    public Dog(String dogBreed, boolean dogOwned, int dogYears, String dogColor, String countryFrom) {
+        System.out.println("Constructor invoked!");
+        breed = dogBreed;
+        hasOwner = dogOwned;
+        age = dogYears;
+        color = dogColor;
+        country = countryFrom;
+    }
+  
+    public static void main(String[] args) {
+        System.out.println("Main method started");
+    
+        // Create two Dog objects
+        Dog fido = new Dog("poodle", false, 4, "red", "Germany");
+        Dog nunzio = new Dog("shiba inu", true, 12, "black", "Russia");
+    
+        boolean isFidoOlder = fido.age > nunzio.age;
+        int totalDogYears = nunzio.age + fido.age;
+    
+        System.out.println("Two dogs created: a " + fido.breed + " and a " + nunzio.breed);
+        System.out.println("The statement that fido is an older dog is: " + isFidoOlder);
+        System.out.println("The total age of the dogs is: " + totalDogYears);
+        System.out.println("The " + nunzio.breed + " is " + nunzio.color);
+    
+        selector(fido, nunzio);
+    
+        System.out.println("Main method finished");
+    }
+  
+    // Modified selector method to take Dog objects as parameters
+    public static void selector(Dog fido, Dog nunzio) {
+        if (fido.age < nunzio.age) {
+            System.out.println("Select Fido");
+        } else {
+            System.out.println("Select Nunzio");
+        }
+    }
+}
+</code></pre>
+
+<hr>
+
+<h2>Methods in Classes</h2>
+
+<p>A method is a task that an object of a class performs.</p>
+<p><strong>Non-static Objects:</strong> A non-static object added to the class can be used on an object of that class.</p>
+<p><strong>Accessing Instance Fields:</strong> When building methods in a class, we can reference the instance fields of the class directly without needing to use the dot operator.</p>
+
+<p>This helps us because any parameter passed to a method can directly access fields in the method without extra syntax. In other words, methods in the class can use the fields directly!</p>
+
+<p><strong>Scope:</strong> Variables declared within a method cannot be accessed outside of that method. This means we can’t access variables inside a method from code that is outside the scope of that method.</p>
+
+<h2>Adding Parameters to Methods</h2>
+<p>We saw that a method’s scope prevents us from using variables declared in one method in another method. But sometimes, we need information from one method to pass into another. We can do this by adding parameters to methods, similar to how we added parameters to constructors.</p>
+
+<p><strong>Example:</strong> In the code below, we create a <code>startRadio()</code> method that accepts a <code>double</code> parameter <code>stationNum</code> and a <code>String</code> parameter <code>stationName</code>:</p>
+<pre><code>public void startRadio(double stationNum, String stationName) {
+    System.out.println("Tuning to " + stationName + " at " + stationNum + " FM.");
+}
+</code></pre>
+
+<h1>Method Overloading</h1>
+<p>Method overloading allows Java programs to have multiple methods with the same name, provided each method has a unique parameter list. For example, we can modify the program to include two <code>startRadio()</code> methods:</p>
+
+<pre><code>// Method 1
+public void startRadio(double stationNum, String stationName) {
+    System.out.println("Turning on the radio to " + stationNum + ", " + stationName + "!");
+    System.out.println("Enjoy!");
+}
+
+// Method 2
+public void startRadio(double stationNum) {
+    System.out.println("Turning on the radio to " + stationNum + "!");
+}
+
+public static void main(String[] args) {
+    Car myCar = new Car("red");
+    // Calls the first startRadio() method
+    myCar.startRadio(103.7, "Meditation Station");
+
+    // Calls the second startRadio() method
+    myCar.startRadio(98.2);
+}</code></pre>
+
+<hr>
+
+<h1>Reassigning Instance Fields</h1>
+<p>We can create a method to modify an instance field by calculating a new value based on a parameter. For example:</p>
+<pre><code>double newPrice = price + addedPrice; // addedPrice is the parameter
+price = newPrice; // Reassigns the instance field</code></pre>
+<p>This code adds the parameter <code>addedPrice</code> to <code>price</code> and reassigns the result to <code>price</code>, updating the instance field with the new value.</p>
+
+<hr>
+
+<h1>Return Statements</h1>
+<p>Once the <code>return</code> statement is executed, the compiler exits the function. Any code that exists after the return statement is ignored.</p>
+<p>If we want a method to return a value (rather than using <code>void</code>), we specify a return data type, such as <code>int</code>:</p>
+
+<p><strong>Example:</strong> A method returning an integer:</p>
+<pre><code>public int calculator() {
+    // Code that returns an integer
+}</code></pre>
+
+<p>Unlike <code>void</code> methods, non-void methods can be used directly in expressions, such as assigning their return value to a variable:</p>
+
+<pre><code>public static void main(String[] args) {
+    Car myCar = new Car("red");
+    int numTires = myCar.numberOfTires();
+}</code></pre>
+
+<hr>
+
+<h1>Returning an Object</h1>
+<p>We can also return objects from methods. Unlike primitive types, which return a copy of the value, returning an object provides a reference to the object itself.</p>
+
+<p>For example, here’s a <code>CarLot</code> class that takes a <code>Car</code> object as a parameter and includes a method that returns the <code>Car</code> object:</p>
+
+<pre><code>class CarLot {
+    Car carInLot;
+
+    public CarLot(Car givenCar) {
+        carInLot = givenCar;
+    }
+
+    public Car returnACar() {
+        return carInLot; // Returns Car object
+    }
+
+    public static void main(String[] args) {
+        Car myCar = new Car("red", 70);
+        System.out.println(myCar);
+        CarLot myCarLot = new CarLot(myCar);
+        System.out.println(myCarLot.returnACar());
+    }
+}</code></pre>
+
+<p>This code outputs the same memory address twice because <code>myCar</code> and <code>carInLot</code> have the same reference value:</p>
+<pre><code>Car@2f333739
+Car@2f333739</code></pre>
+
+<hr>
+
+<h1>toString() Method</h1>
+<p>By defining a <code>toString()</code> method for a class, we can specify a custom String to display whenever we print the object:</p>
+
+<pre><code>public class Store {
+    // Instance fields
+    public String productType;
+    public double price;
+
+    // Constructor method
+    public Store(String product, double initialPrice) {
+        productType = product;
+        price = initialPrice;
+    }
+
+    public String toString() {
+        return "This store sells " + productType + " at a price of " + price;
+    }
+}</code></pre>
+
+<hr>
+
+<h1>Conditionals</h1>
+
+<h2>Switch Statement</h2>
+<p>Switch statements allow for efficient branching based on a specific variable value:</p>
+
+<pre><code>public double calculateShipping() {
+    double shippingCost;
+
+    switch (shipping) {
+        case "Regular":
+            shippingCost = 0;
+            break;
+        case "Express":
+            shippingCost = 1.75;
+            break;
+        default:
+            shippingCost = 0.50;
+    }
+    return shippingCost;
+}</code></pre>
+
+<h2>Conditional Example: Reservation System</h2>
+<p>Here’s an example class with conditional statements for handling reservations:</p>
+
+<pre><code>public class Reservation {
+    int guestCount;
+    int restaurantCapacity;
+    boolean isRestaurantOpen;
+    boolean isConfirmed;
+
+    public Reservation(int count, int capacity, boolean open) {
+        if (count < 1 || count > 8) {
+            System.out.println("Invalid reservation!");
+        }
+        guestCount = count;
+        restaurantCapacity = capacity;
+        isRestaurantOpen = open;
+    }
+
+    public void confirmReservation() {
+        if (restaurantCapacity >= guestCount && isRestaurantOpen) {
+            System.out.println("Reservation confirmed");
+            isConfirmed = true;
+        } else {
+            System.out.println("Reservation denied");
+            isConfirmed = false;
+        }
+    }
+
+    public void informUser() {
+        if (!isConfirmed) {
+            System.out.println("Unable to confirm reservation, please contact restaurant.");
+        } else {
+            System.out.println("Please enjoy your meal!");
+        }
+    }
+
+    public static void main(String[] args) {
+        Reservation partyOfThree = new Reservation(3, 12, true);
+        Reservation partyOfFour = new Reservation(4, 3, true);
+
+        partyOfThree.confirmReservation();
+        partyOfThree.informUser();
+        partyOfFour.confirmReservation();
+        partyOfFour.informUser();
+    }
+}</code></pre>
+
+<hr>
+
+<h1>Order of Evaluation in Conditionals</h1>
+<p>When evaluating conditional expressions, the compiler follows a specific order:</p>
+<ul>
+    <li>Conditions placed in parentheses - <code>()</code></li>
+    <li>NOT operator - <code>!</code></li>
+    <li>AND operator - <code>&&</code></li>
+    <li>OR operator - <code>||</code></li>
+</ul>
+
+<hr>
+
+<h1>Conditional Operators Review</h1>
+<p>Conditional operators simplify branching logic in conditional statements. They work as follows:</p>
+
+<p><strong>Conditional-AND (&&):</strong> Evaluates to true if both booleans are true.</p>
+<pre><code>if (true && false) {
+    System.out.println("You won't see me print!");
+} else if (true && true) {
+    System.out.println("You will see me print!");
+}</code></pre>
+
+<p><strong>Conditional-OR (||):</strong> Evaluates to true if at least one of the booleans is true.</p>
+<pre><code>if (false || false) {
+    System.out.println("You won't see me print!");
+} else if (false || true) {
+    System.out.println("You will see me print!");
+}</code></pre>
+
+<p><strong>Logical-NOT (!):</strong> Inverts the boolean value it’s applied to.</p>
+<pre><code>if (!false) {
+    System.out.println("You will see me print!");
+}</code></pre>
+
+<h1>Arrays in Java</h1>
+
+<h2>Creating an Array</h2>
+<p>To create an array, declare its type and name:</p>
+<pre><code>double[] prices;</code></pre>
+
+<p>Just like with variables, we can declare and initialize an array in the same line, specifying its contents directly:</p>
+<pre><code>double[] prices = {13.15, 15.87, 14.22, 16.66};</code></pre>
+
+<h2>Method Returning an Array</h2>
+<p>Example of a method that returns a String array:</p>
+<pre><code>public String[] getTopics(){
+    String[] topics = {"Opinion", "Tech", "Science", "Health"};
+    return topics;
+}</code></pre>
+
+<h2>Printing Arrays</h2>
+<p>If we want to print an array, we can use the <code>toString()</code> method provided by the Arrays package in Java, as printing directly won’t give a descriptive output.</p>
+<pre><code>System.out.println(Arrays.toString(prices));</code></pre>
+
+<h2>Empty Arrays with Fixed Size</h2>
+<p>Empty arrays must be initialized with a fixed size:</p>
+<pre><code>String[] menuItems = new String[5];</code></pre>
+
+<p>After declaring and initializing, we can assign values to each index individually:</p>
+<pre><code>menuItems[0] = "Veggie hot dog";
+menuItems[1] = "Potato salad";
+menuItems[2] = "Cornbread";
+menuItems[3] = "Roasted broccoli";
+menuItems[4] = "Coffee ice cream";</code></pre>
+
+<p>This has the same effect as initializing with all elements at once:</p>
+<pre><code>String[] menuItems = {"Veggie hot dog", "Potato salad", "Cornbread", "Roasted broccoli", "Coffee ice cream"};</code></pre>
+
+<h2>Initializing Arrays in a Constructor</h2>
+<p>Here’s an example of a class that initializes arrays in its constructor:</p>
+<pre><code>public class Newsfeed {
+    String[] topics = {"Opinion", "Tech", "Science", "Health"};
+    int[] views = {0, 0, 0, 0};
+    String[] favoriteArticles;
+
+    public Newsfeed() {
+        favoriteArticles = new String[10]; // Initialize empty array with fixed size
+    }
+}</code></pre>
+
+<h2>Getting Array Length</h2>
+<p>The length of an array can be accessed using the <code>length</code> property:</p>
+<pre><code>System.out.println(menuItems.length);</code></pre>
+
+<hr>
+
+<h1>Using <code>String[] args</code> in <code>main()</code> Methods</h1>
+<p>When we write <code>main()</code> methods, we often include <code>String[] args</code> as a parameter. This allows us to pass arguments into the program from the command line.</p>
+
+<h2>Examples of String Arrays:</h2>
+<pre><code>String[] humans = {"Talesha", "Gareth", "Cassie", "Alex"};
+String[] robots = {"R2D2", "Marvin", "Bender", "Ava"};</code></pre>
+
+<h2>Passing Arguments to <code>main()</code></h2>
+<p>For example, in this class:</p>
+<pre><code>public class HelloYou {
+    public static void main(String[] args) {
+        System.out.println("Hello " + args[0]);
+    }
+}</code></pre>
+
+<p>If we run this program in the terminal with <code>java HelloYou Laura</code>, it will output:</p>
+<pre><code>Hello Laura</code></pre>
+
+<h2>Example with Arrays and Arguments</h2>
+<p>Here’s another example where we select a set of topics based on the argument passed to the program:</p>
+
+<pre><code>import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) {
+        Newsfeed feed;
+        if (args[0].equals("Robot")) {
+            String[] robotTopics = {"Oil", "Parts", "Algorithms", "Love"};
+            feed = new Newsfeed(robotTopics);
+        } else if (args[0].equals("Human")) {
+            String[] humanTopics = {"Politics", "Science", "Sports", "Love"};
+            feed = new Newsfeed(humanTopics);
+        } else {
+            String[] genericTopics = {"Opinion", "Tech", "Science", "Health"};
+            feed = new Newsfeed(genericTopics);
+        }
+        
+        System.out.println("The topics in this feed are:");
+        System.out.println(Arrays.toString(feed.topics));
+    }
+}</code></pre>
+
+<hr>
+
+<h1>ArrayLists in Java</h1>
+<p>Unlike arrays, ArrayLists are mutable and dynamic. They can grow or shrink as needed. Java’s ArrayList class allows us to:</p>
+<ul>
+    <li>Store elements of the same type</li>
+    <li>Access elements by index</li>
+    <li>Add elements</li>
+    <li>Remove elements</li>
+</ul>
+
+<h2>Initializing an ArrayList</h2>
+<p>Declare an empty ArrayList of a specific type using generics:</p>
+<pre><code>ArrayList<Integer> ages = new ArrayList<>();</code></pre>
+
+<h2>Example of Adding Elements</h2>
+<p>To add elements:</p>
+<pre><code>ArrayList<String> toDoList = new ArrayList<String>();
+toDoList.add("Water plants");
+toDoList.add("Water toys");
+toDoList.add("Water dishes");
+System.out.println(toDoList);</code></pre>
+
+<h2>Size of ArrayList</h2>
+<p>To display the number of items in an ArrayList, use <code>size()</code>:</p>
+<pre><code>ArrayList<String> shoppingCart = new ArrayList<String>();
+shoppingCart.add("Trench Coat");
+System.out.println(shoppingCart.size());</code></pre>
+
+<h2>Accessing Elements</h2>
+<p>ArrayLists use the <code>get()</code> method for accessing elements:</p>
+<pre><code>System.out.println(shoppingCart.get(1));</code></pre>
+
+<h2>Setting Values</h2>
+<p>To change an element, use the <code>set()</code> method:</p>
+<pre><code>shoppingCart.set(0, "Tweed Cape");</code></pre>
+
+<h2>Removing Elements</h2>
+<p>To remove an item by index:</p>
+<pre><code>shoppingCart.remove(1);</code></pre>
+
+<h2>Getting the Index of an Element</h2>
+<p>To find the index of an element:</p>
+<pre><code>ArrayList<String> detectives = new ArrayList<>(Arrays.asList("Holmes", "Poirot", "Marple"));
+System.out.println(detectives.indexOf("Poirot"));</code></pre>
+
+<hr>
+
+<h1>Loops</h1>
+
+<h2>While Loop</h2>
+<p>A <code>while</code> loop repeats while a condition is true.</p>
+<pre><code>int attempts = 0;
+while (passcode != 0524 && attempts < 4) {
+    System.out.println("Try again.");
+    passcode = getNewPasscode();
+    attempts++;
+}</code></pre>
+
+<h2>Beware of Infinite Loops</h2>
+<p>If a condition is always true, the loop will never exit:</p>
+<pre><code>while (hedgehogs < 6) {
+    System.out.println("Not enough hedgehogs!");
+}</code></pre>
+
+<h2>For Loop</h2>
+<p>A <code>for</code> loop consists of initialization, a boolean expression, and an increment/decrement:</p>
+<pre><code>for (int i = 0; i < 5; i++) {
+    // Code to run
+}</code></pre>
+
+<h2>Break and Continue</h2>
+<p><code>continue</code> skips the current iteration, while <code>break</code> exits the loop:</p>
+<pre><code>for (int i = 0; i < 100; i++) {
+    if (i % 5 != 0) continue;
+    System.out.println(i);
+}</code></pre>
+
+<h2>For-Each Loop</h2>
+<p>The for-each loop is used to traverse elements directly:</p>
+<pre><code>for (String item : inventoryItems) {
+    System.out.println(item);
+}</code></pre>
+
+<h2>Removing Elements During Traversal</h2>
+<p>Be careful with removing elements while traversing ArrayLists. When an element is removed, other elements shift left, which may affect the loop index.</p>
+
+<h2>Example of Removing Elements</h2>
+<pre><code>public class Lunch {
+    public static ArrayList<String> removeAnts(ArrayList<String> lunchBox) {
+        for (int i = 0; i < lunchBox.size(); i++) {
+            if (lunchBox.get(i).equals("ant")) {
+                lunchBox.remove(i);
+                i--;
+            }
+        }
+        return lunchBox;
+    }
+
+    public static void main(String[] args) {
+        ArrayList<String> lunchContainer = new ArrayList<>(Arrays.asList("apple", "ant", "sandwich", "ant"));
+        System.out.println(removeAnts(lunchContainer));
+    }
+}</code></pre>
+
+<hr>
+
+<h1>Static vs. Non-Static in Java</h1>
+
+<h1>String Methods in Java</h1>
+<p>Because character strings are so vital to programming, Java dedicated an entire class to them. This is great news for us because the String class has a lot of useful methods to help us perform operations on Strings and data manipulation. We don’t have to import anything to use the String class because it’s part of the java.lang package which is available by default.</p>
+
+<p>In this lesson, we will go over several String methods:</p>
+<ul>
+    <li>length()</li>
+    <li>concat()</li>
+    <li>equals()</li>
+    <li>indexOf()</li>
+    <li>charAt()</li>
+    <li>substring()</li>
+    <li>toUpperCase() / toLowerCase()</li>
+</ul>
+
+<p>Suppose we have a String called <code>str</code>, <code>str.length()</code> would return its length. Take a look at this code for example:</p>
+<pre><code>String str = "Hello World!";  
+System.out.println(str.length());
+</code></pre>
+
+<h2>Example with String length:</h2>
+<pre><code>public static void main(String[] args) {
+   String tweet = "Liz Lemon, ninjas are kind of cool... I just dont know any personally. Get on that.";
+
+   // What's the character count?
+   System.out.println(tweet.length());
+   System.out.println(tweet.length());
+
+   if (tweet.length() &lt;= 280) {
+      System.out.println(tweet);
+   }
+}</code></pre>
+
+<h2>Concatenation with <code>concat()</code> method</h2>
+<p>The <code>concat()</code> method concatenates one string to the end of another string. Concatenation is the operation of joining two strings together. Suppose we have a String called <code>str1</code> and another String called <code>str2</code>, using <code>str1.concat(str2)</code> would return <code>str1</code> with <code>str2</code> appended to the end of it.</p>
+
+<p>For example:</p>
+<pre><code>String name = new String("Code");
+
+name = name.concat("cademy");
+
+System.out.println(name);
+</code></pre>
+
+<p>Important to note that <code>concat()</code> does not change the actual string. When concatenating, we create a new string:</p>
+
+<ul>
+    <li><code>String name = "Code";</code>: A string object "Code" is created, and <code>name</code> is a variable that holds a reference (or pointer) to this object.</li>
+    <li><code>name.concat("cademy");</code>: This tries to join "Code" with "cademy". However, because strings are immutable, the original "Code" is not altered. Instead, a new string "Codecademy" is created, but it’s not automatically assigned to any variable.</li>
+    <li><code>System.out.println(name);</code>: Since we didn’t reassign the result of <code>concat()</code> to the variable <code>name</code>, it still points to the original "Code". Therefore, when we print <code>name</code>, it will output "Code", not "Codecademy".</li>
+</ul>
+
+<p>To actually store and use the new concatenated string, we would need to do something like this:</p>
+<pre><code>public static void main(String[] args) {
+   String firstName = "Ziggy"; 
+   String lastName = "Stardust";
+
+   // What's the full name?
+   System.out.println(firstName.concat(" " + lastName));
+}</code></pre>
+
+<h2>Equality Checking with <code>equals()</code> and <code>equalsIgnoreCase()</code></h2>
+<p>With objects, such as Strings, we can’t use the primitive equality operator <code>==</code> to check for equality between two strings. To test equality with strings, we use a built-in method called <code>equals()</code>. There’s also an <code>equalsIgnoreCase()</code> method that compares two strings without considering upper/lower cases.</p>
+
+<p>We can also compare String values lexicographically (think dictionary order) using the <code>.compareTo()</code> method. When we call the <code>.compareTo()</code> method, each character in the String is converted to Unicode; then the Unicode character from each String is compared. UPPER CASE AND LOWER CASE CAN BE IMPORTANT IN THIS.</p>
+
+<h2><code>indexOf()</code></h2>
+<p>If we want to know the index of the first occurrence of a character in a string, we can use the <code>indexOf()</code> method on a string. Remember that the indices in Java start with 0:</p>
+<pre><code>String letters = "ABCDEFGHIJKLMN";
+System.out.println(letters.indexOf("C"));
+</code></pre>
+
+<pre><code>public static void main(String[] args) {
+   String code = ".... .. / .. .----. -- / ... --- -. -. -.-- / .- -. -.. / .. / .-.. .. -.- . / - --- / . .- - / .-. .- -- . -.";
+
+   // Write the code:
+   System.out.println(code.indexOf(". .- -"));  
+}</code></pre>
+
+<h2><code>charAt()</code> — Finding Character at an Index</h2>
+<p>The <code>charAt()</code> method returns the character located at a String's specified index.</p>
+<pre><code>String str = "qwer";
+System.out.println(str.charAt(2));
+
+public static void main(String[] args) {
+    String firstName = "DOLU"; 
+    String lastName = "KUYE";
+  
+    // What are the initials?
+    System.out.println(firstName.charAt(0));
+    System.out.println(lastName.charAt(0));
+}</code></pre>
+
+<h2>Extracting Parts of Strings with <code>substring()</code></h2>
+<p>There may be times when we only want a part of a string. In such cases, we may want to extract a substring from a string. The <code>substring()</code> method does exactly that. For example:</p>
+<pre><code>String line = "The Heav'ns and all the Constellations rung";
+System.out.println(line.substring(24));
+</code></pre>
+
+<p>Suppose we want a substring from the middle of the string. We can instead include two arguments in this method:</p>
+<pre><code>String line = "The Heav'ns and all the Constellations rung";
+System.out.println(line.substring(27, 33));
+</code></pre>
+
+<p>When <code>substring()</code> is called with two arguments, the first argument is inclusive and the second is exclusive. This means the resulting substring will begin at index 27 and extend up to, but not including, index 33. Therefore, the example above would output "stella" because that’s the substring that begins at index 27 and ends at index 32, one index before 33.</p>
+
+<h2>Changing Case with <code>toUpperCase()</code> and <code>toLowerCase()</code></h2>
+<p>There will be times when we have a word in a case other than what we need it in. Luckily, Java has a couple of String methods to help us out:</p>
+<pre><code>String input = "Cricket!";
+
+String upper = input.toUpperCase();
+// stores "CRICKET!"
+
+String lower = input.toLowerCase();
+// stores "cricket!"
+</code></pre>
+
+<h1>Access and Scope</h1>
+<p>To oversimplify things, the concepts of access and scope both center around what parts of your programs can interact with specific variables or methods from other parts of your program.</p>
+
+<p>Accessor methods, sometimes known as "getters," and mutator methods, sometimes known as "setters," are part of this concept. When we use <code>public</code> for class instance variables, constructors, and methods, any other class can access it.</p>
+
+<h2>Example with Access</h2>
+<pre><code>public class Dog {
+    public String name;
+    public int age;
+
+    public Dog(String input_name, int input_age) {
+        name = input_name;
+        age = input_age;
+    }
+      
+    public void speak() {
+        System.out.println("Arf Arf! My name is " + name + " and I am a good dog!");
+    }
+}</code></pre>
+
+<p>Since everything about a Dog is public, any other class can access anything about a Dog. For example, let’s say there was a <code>DogSchool</code> class. Any method of the <code>DogSchool</code> class could make a new Dog using the public Dog constructor, directly access that Dog’s instance variables, and directly use that Dog’s methods:</p>
+
+<pre><code>public class DogSchool {
+    public void makeADog() {
+        Dog cujo = new Dog("Cujo", 7);
+        System.out.println(cujo.age);
+        cujo.speak();
+    }
+}</code></pre>
+
+<p>Changing access of the instance fields from private to public will allow us to access it. When a Class’ instance variable or method is marked as private, that means that you can only access those structures from elsewhere inside that same class. Only structures in the same class will be able to access.</p>
+
+<h2>Accessors</h2>
+<p>To give other classes access to a private instance variable, we would write an accessor method (sometimes also known as a "getter" method).</p>
+
+<h2>Getter Example</h2>
+<pre><code>public class Dog {
+    private String name;
+      
+    // Other methods and constructors
+
+    public String getName() {
+        return name;
+    }
+}</code></pre>
+
+<h2>Setter Example</h2>
+<p>Similarly, private instance variables often have mutator methods (sometimes known as "setters"). These methods allow other classes to reset the value stored in private instance variables.</p>
+
+<pre><code>public class Dog {
+    private String name;
+      
+    // Other methods and constructors
+
+    public void setName(String newName) {
+        name = newName;
+    }
+
+    public static void main(String[] args) {
+        Dog myDog = new Dog("Cujo");
+        myDog.setName("Lassie");
+    }
+}</code></pre>
+
+<p>In a nutshell, in a class, we can have both getter and setter methods. The getter retrieves information (e.g., getName()) by returning the same type as the instance field, while the setter (e.g., setName()) allows us to change the instance field. Setters are often void as they do not return anything.</p>
+
+<h2>Getter and Setter Code for Checking Balance</h2>
+
+<pre><code>public class CheckingAccount {
+    public String name;
+    private int balance;
+    private String id;
+    
+    public CheckingAccount(String inputName, int inputBalance, String inputId) {
+        name = inputName;
+        balance = inputBalance;
+        id = inputId;
+    }  
+
+    public int getBalance() {
+        return balance;
+    }
+
+    public void setBalance(int newBalance) {
+        balance = newBalance;
+    }
+}
+</code></pre>
+
+<h2>Scope</h2>
+<p>Local variables are only usable in the method they are defined in. This idea of scope extends to conditionals and loops as well. If you declare a variable inside the body of a conditional or in a loop, that variable can only be used inside that structure. This also includes the variable you’re using as your looping variable. For example, consider the following block of code:</p>
+
+<pre><code>for (int i = 0; i &lt; 10; i++) {
+    // You can use i here
+}
+// i is out of scope here
+</code></pre>
+
+<p>Also, remember that a variable must be declared first before it can be used.</p>
+
+<h2>The <code>this</code> Keyword</h2>
+<p>If we wanted to access the instance variable and not the local variable, we could use the <code>this</code> keyword. Oftentimes, you’ll see constructors have parameters with the same name as the instance variable. For example, you might see something like:</p>
+
+<pre><code>public Dog(String name) {
+    this.name = name;
+}</code></pre>
+
+<p>You can read this as "set this Dog's instance variable name equal to the variable passed into the constructor." While this naming is a common convention, it can also be confusing. There’s nothing wrong with naming your parameters something else to be more clear. Sometimes you will see something like:</p>
+
+<pre><code>public Dog(String inputName) {
+    this.name = inputName;
+}</code></pre>
+
+<p>Another example using <code>this</code> with additional variables:</p>
+<pre><code>public class SavingsAccount {
+    public SavingsAccount(String owner, double balanceDollar) {
+        this.owner = owner;
+        this.balanceDollar = balanceDollar;
+        this.balanceEuro = balanceDollar * 0.85;
+    }
+
+    public void addMoney(int balanceDollar) {
+        System.out.println("Adding " + balanceDollar + " dollars to the account.");
+        this.balanceDollar += balanceDollar;
+        System.out.println("The new balance is " + this.balanceDollar + " dollars.");
+    }
+}
+</code></pre>
+
+<h2>Using <code>this</code> With Methods</h2>
+<p>We’ve seen how <code>this</code> works with variables, but we can also use <code>this</code> with methods.</p>
+<pre><code>public class Computer {
+    public int brightness;
+    public int volume;
+  
+    public void setBrightness(int inputBrightness) {
+        this.brightness = inputBrightness;
+    }
+
+    public void setVolume(int inputVolume) {
+        this.volume = inputVolume;
+    }
+
+    public void resetSettings() {
+        this.setBrightness(0);
+        this.setVolume(0);
+    }
+}
+</code></pre>
+<p>In the <code>resetSettings()</code> method, we call other methods from the class and need an object to call those methods. Instead of creating a new object, <code>this</code> is used as the object. When <code>resetSettings()</code> is called, the calling object uses <code>setBrightness(0)</code> and <code>setVolume(0)</code> on itself.</p>
+<p><strong>In my own words:</strong> We can set up a method where we pass an object and then call other methods based on the object we passed.</p>
+<ul>
+    <li><strong><code>this</code> as a Method Caller:</strong> When you use <code>this.setBrightness(0)</code> inside a method, it means "call the <code>setBrightness(0)</code> method on the current object that called the method."</li>
+    <li><strong><code>this</code> as a Parameter:</strong> When you pass <code>this</code> to another method (like <code>pairWithOtherComputer(this)</code>), you are passing a reference to the current object so that method can use it.</li>
+</ul>
+<pre><code>public class Computer {
+    // Method that takes another Computer object as a parameter
+    public void pairWithOtherComputer(Computer other) {
+        // "other" is a different Computer object passed into the method
+        System.out.println("Pairing with another computer...");
+    }
+
+    // Method that uses "this" to call pairWithOtherComputer() and passes "this" as a parameter
+    public void setUpConnection() {
+        // "this" refers to the current object calling setUpConnection()
+        this.pairWithOtherComputer(this);
+    }
+
+    public static void main(String[] args) {
+        // Create a new Computer object called myComputer
+        Computer myComputer = new Computer();
+
+        // myComputer calls setUpConnection(), using "this" to call another method
+        myComputer.setUpConnection();
+    }
+}
+</code></pre>
+
+<p><strong>Example:</strong> Using <code>this</code> to access a method and call it later:</p>
+<pre><code>public class Person {
+    public int age;
+    public int wisdom;
+    public int fitness;
+
+    public Person(int inputAge) {
+        this.age = inputAge;
+        this.wisdom = inputAge * 5;
+        this.fitness = 100 - inputAge;
+    }
+
+    public void setAge(int newAge) {
+        this.age = newAge;
+    }
+
+    public void setWisdom(int newWisdom) {
+        this.wisdom = newWisdom;
+    }
+
+    public void setFitness(int newFitness) {
+        this.fitness = newFitness;
+    }
+
+    public void hasBirthday() {
+        // Complete this method
+        this.setAge(this.age + 1);
+        this.setWisdom(this.wisdom + 5);
+        this.setFitness(this.fitness - 3);
+    }
+}
+</code></pre>
+<pre><code>public class Main {
+    public static void main(String[] args) {
+        Person emily = new Person(20);
+        emily.hasBirthday();
+        System.out.println("New age is: " + emily.age);
+        System.out.println("New wisdom is: " + emily.wisdom);
+        System.out.println("New fitness is: " + emily.fitness);
+    }
+}
+</code></pre>
+
+<h2>Math Class - Static Methods</h2>
+<p>In the <code>Math</code> class, every method is static, meaning we can call them without creating an object.</p>
+<pre><code>class Numbers {
+    public static void main(String[] args) {
+        int smallerNumber = Math.min(3, 10);
+        System.out.println(smallerNumber); // Prints: 3
+    }
+}
+</code></pre>
+<p>We can also import the <code>Math</code> class to use methods directly:</p>
+<pre><code>import static java.lang.Math.*; // import Math class
+
+class Numbers {
+    public static void main(String[] args) {
+        int smallerNumber = min(3, 10);
+        System.out.println(smallerNumber); // Prints: 3
+    }
+}
+</code></pre>
+<pre><code>double x = Math.sqrt(49); // Prints: 7.0
+double y = Math.sqrt(52); // Prints: 7.211102550927978
+
+double power = Math.pow(2, 4);
+System.out.println(power); // Prints: 16.0
+</code></pre>
+
+<p>To generate random values with <code>Math.random()</code>:</p>
+<ul>
+    <li>Random double between 0 and 10: <code>double a = Math.random() * 10;</code></li>
+    <li>Random int between 0 and 9: <code>int b = (int)(Math.random() * 10);</code></li>
+    <li>Random int between 1 and 10: <code>int c = (int)(Math.random() * 10) + 1;</code></li>
+    <li>Random int between 10 and 20: <code>int d = (int)(Math.random() * 11 ) + 10;</code></li>
+</ul>
+<p>The <code>Math</code> class is part of the <code>java.lang</code> package, providing static methods for mathematical operations.</p>
+
+<h2>Static Methods</h2>
+<p>Static methods belong to a class rather than an instance, and they are called using the class name and the <code>.</code> operator.</p>
+<pre><code>public class Dog {
+    // Static variable
+    public static String genus = "Canis";
+
+    // Instance variables
+    public int age;
+    public String name;
+
+    public Dog(int inputAge, String inputName) {
+        this.age = inputAge;
+        this.name = inputName;
+    }
+}
+</code></pre>
+<p>To access a static variable:</p>
+<pre><code>public class Dog {
+    public static void main(String[] args) {
+        System.out.println(Dog.genus); // Prints: Canis
+    }
+}
+</code></pre>
+<p>Unlike static methods, you can still access static variables from any object of the class, and the value will be the same across all objects.</p>
+<p>To write a custom static method:</p>
+<pre><code>public static void myFirstStaticMethod() {
+    // Some code here
+}
+</code></pre>
+<p>Static methods can also act as accessors or mutators for static variables:</p>
+<pre><code>public static int getMyStaticVariable() {
+    return myStaticVariable;
+}
+
+public static void setMyStaticVariable(int newValue) {
+    myStaticVariable = newValue;
+}
+</code></pre>
+<p>Important: Static methods cannot interact with non-static instance variables, and <code>this</code> cannot be used within static methods.</p>
+
+<h2>Using <code>this</code> With Methods</h2>
+<p>We’ve seen how <code>this</code> works with variables, but we can also use <code>this</code> with methods.</p>
+<pre><code>public class Computer {
+    public int brightness;
+    public int volume;
+  
+    public void setBrightness(int inputBrightness) {
+        this.brightness = inputBrightness;
+    }
+
+    public void setVolume(int inputVolume) {
+        this.volume = inputVolume;
+    }
+
+    public void resetSettings() {
+        this.setBrightness(0);
+        this.setVolume(0);
+    }
+}
+</code></pre>
+<p>In the <code>resetSettings()</code> method, we call other methods from the class and need an object to call those methods. Instead of creating a new object, <code>this</code> is used as the object. When <code>resetSettings()</code> is called, the calling object uses <code>setBrightness(0)</code> and <code>setVolume(0)</code> on itself.</p>
+<p><strong>In my own words:</strong> We can set up a method where we pass an object and then call other methods based on the object we passed.</p>
+<ul>
+    <li><strong><code>this</code> as a Method Caller:</strong> When you use <code>this.setBrightness(0)</code> inside a method, it means "call the <code>setBrightness(0)</code> method on the current object that called the method."</li>
+    <li><strong><code>this</code> as a Parameter:</strong> When you pass <code>this</code> to another method (like <code>pairWithOtherComputer(this)</code>), you are passing a reference to the current object so that method can use it.</li>
+</ul>
+<pre><code>public class Computer {
+    // Method that takes another Computer object as a parameter
+    public void pairWithOtherComputer(Computer other) {
+        // "other" is a different Computer object passed into the method
+        System.out.println("Pairing with another computer...");
+    }
+
+    // Method that uses "this" to call pairWithOtherComputer() and passes "this" as a parameter
+    public void setUpConnection() {
+        // "this" refers to the current object calling setUpConnection()
+        this.pairWithOtherComputer(this);
+    }
+
+    public static void main(String[] args) {
+        // Create a new Computer object called myComputer
+        Computer myComputer = new Computer();
+
+        // myComputer calls setUpConnection(), using "this" to call another method
+        myComputer.setUpConnection();
+    }
+}
+</code></pre>
+
+<p><strong>Example:</strong> Using <code>this</code> to access a method and call it later:</p>
+<pre><code>public class Person {
+    public int age;
+    public int wisdom;
+    public int fitness;
+
+    public Person(int inputAge) {
+        this.age = inputAge;
+        this.wisdom = inputAge * 5;
+        this.fitness = 100 - inputAge;
+    }
+
+    public void setAge(int newAge) {
+        this.age = newAge;
+    }
+
+    public void setWisdom(int newWisdom) {
+        this.wisdom = newWisdom;
+    }
+
+    public void setFitness(int newFitness) {
+        this.fitness = newFitness;
+    }
+
+    public void hasBirthday() {
+        // Complete this method
+        this.setAge(this.age + 1);
+        this.setWisdom(this.wisdom + 5);
+        this.setFitness(this.fitness - 3);
+    }
+}
+</code></pre>
+<pre><code>public class Main {
+    public static void main(String[] args) {
+        Person emily = new Person(20);
+        emily.hasBirthday();
+        System.out.println("New age is: " + emily.age);
+        System.out.println("New wisdom is: " + emily.wisdom);
+        System.out.println("New fitness is: " + emily.fitness);
+    }
+}
+</code></pre>
+
+<h2>Math Class - Static Methods</h2>
+<p>In the <code>Math</code> class, every method is static, meaning we can call them without creating an object.</p>
+<pre><code>class Numbers {
+    public static void main(String[] args) {
+        int smallerNumber = Math.min(3, 10);
+        System.out.println(smallerNumber); // Prints: 3
+    }
+}
+</code></pre>
+<p>We can also import the <code>Math</code> class to use methods directly:</p>
+<pre><code>import static java.lang.Math.*; // import Math class
+
+class Numbers {
+    public static void main(String[] args) {
+        int smallerNumber = min(3, 10);
+        System.out.println(smallerNumber); // Prints: 3
+    }
+}
+</code></pre>
+<pre><code>double x = Math.sqrt(49); // Prints: 7.0
+double y = Math.sqrt(52); // Prints: 7.211102550927978
+
+double power = Math.pow(2, 4);
+System.out.println(power); // Prints: 16.0
+</code></pre>
+
+<p>To generate random values with <code>Math.random()</code>:</p>
+<ul>
+    <li>Random double between 0 and 10: <code>double a = Math.random() * 10;</code></li>
+    <li>Random int between 0 and 9: <code>int b = (int)(Math.random() * 10);</code></li>
+    <li>Random int between 1 and 10: <code>int c = (int)(Math.random() * 10) + 1;</code></li>
+    <li>Random int between 10 and 20: <code>int d = (int)(Math.random() * 11 ) + 10;</code></li>
+</ul>
+<p>The <code>Math</code> class is part of the <code>java.lang</code> package, providing static methods for mathematical operations.</p>
+
+<h2>Static Methods</h2>
+<p>Static methods belong to a class rather than an instance, and they are called using the class name and the <code>.</code> operator.</p>
+<pre><code>public class Dog {
+    // Static variable
+    public static String genus = "Canis";
+
+    // Instance variables
+    public int age;
+    public String name;
+
+    public Dog(int inputAge, String inputName) {
+        this.age = inputAge;
+        this.name = inputName;
+    }
+}
+</code></pre>
+<p>To access a static variable:</p>
+<pre><code>public class Dog {
+    public static void main(String[] args) {
+        System.out.println(Dog.genus); // Prints: Canis
+    }
+}
+</code></pre>
+<p>Unlike static methods, you can still access static variables from any object of the class, and the value will be the same across all objects.</p>
+<p>To write a custom static method:</p>
+<pre><code>public static void myFirstStaticMethod() {
+    // Some code here
+}
+</code></pre>
+<p>Static methods can also act as accessors or mutators for static variables:</p>
+<pre><code>public static int getMyStaticVariable() {
+    return myStaticVariable;
+}
+
+public static void setMyStaticVariable(int newValue) {
+    myStaticVariable = newValue;
+}
+</code></pre>
+<p>Important: Static methods cannot interact with non-static instance variables, and <code>this</code> cannot be used within static methods.</p>
+
+    <!-- Additional sections for "Working with Classes", "Constructors", etc. can follow the same structure -->
+    <h2>Inheritance</h2>
+    <p>Suppose we are building a <code>Shape</code> class in Java. We might give it some points in 2D, a method for calculating the area, and another method for displaying the shape. But what happens if we want a class for a triangle that has some triangle-specific methods? Do we need to redefine all of the same methods that we created for <code>Shape</code>?</p>
+    <p>No! (Phew.) Lucky for us, a Java class can also inherit traits from another class. Because a <code>Triangle</code> is a <code>Shape</code>, we can define <code>Triangle</code> so that it inherits fields and methods directly from <code>Shape</code>. A reference of type <code>Shape</code> can refer to an object of <code>Shape</code> or an object of <code>Triangle</code>. The object-oriented principle of inheritance saves us the headache of redefining the same class members all over again.</p>
+    <p>Our <code>Triangle</code> class will inherit all the traits of <code>Shape</code>, but <code>Triangle</code> can also contain its own unique methods and variables. For example, we could have an instance variable called <code>hypotenuse</code> and a method called <code>findHypotenuse()</code> that can only be accessed by <code>Triangle</code> class references. Objects of <code>Triangle</code> can call any method contained in <code>Triangle</code> or <code>Shape</code>. This gives us a bunch of possibilities!</p>
+    <p>Here are some key inheritance terms:</p>
+    <ul>
+        <li><strong>Parent class, superclass, and base class</strong> refer to the class that another class inherits from (like <code>Shape</code>).</li>
+        <li><strong>Child class, subclass, and derived class</strong> refer to a class that inherits from another class (like <code>Triangle</code>).</li>
+    </ul>
+    
+    <p>We define a child class so that it inherits from a parent class using the <code>extends</code> keyword:</p>
+    <pre><code>class Shape {
+        // Shape class members
+    }
+    
+    class Triangle extends Shape {
+        // Additional Triangle class members
+    }
+    </code></pre>
+    
+    <p>When we use inheritance to extend a subclass from a superclass, we create an “is-a” relationship from the subclass to the superclass. For example, an object of <code>Triangle</code> is a member of the <code>Shape</code> class; however, an object of <code>Shape</code> is not necessarily an object of <code>Triangle</code>.</p>
+    <p>Until now, we’ve only been working with one class and one file. However, most Java programs utilize multiple classes, each of which requires its own file. Only one file needs a <code>main()</code> method — this is the file we will run.</p>
+    
+    <h3>Using <code>super()</code> Constructor</h3>
+    <p>Hang on, you might be thinking, if the child class inherits its parent’s fields and methods, does it also inherit the constructor? Let’s take a look at how the <code>super()</code> constructor works!</p>
+    <p>Let’s say <code>Shape</code> has a <code>numSides</code> field that is set by passing an integer into the constructor. If we’re instantiating a <code>Triangle</code>, we would want that number to always be <code>3</code>, so we’d want to modify the constructor to automatically assign <code>numSides</code> with a value of <code>3</code>.</p>
+    <p>Can we do that? As it happens, Java has a trick up its sleeve for just this occasion: using the <code>super()</code> method, which acts like the parent constructor inside the child class constructor:</p>
+    <pre><code>class Triangle extends Shape {
+        Triangle() {
+            super(3);
+        }
+        // Additional Triangle class members
+    }
+    </code></pre>
+    <p>By passing <code>3</code> to <code>super()</code>, we make it possible to instantiate a <code>Triangle</code> without passing in a value for <code>numSides</code>. Meanwhile, <code>super(3)</code> (behaving as <code>Shape(3)</code>) will handle setting <code>numSides</code> to <code>3</code> for our <code>Triangle</code> object. It’s like we called <code>Shape(3)</code>.</p>
+    <p>It is also possible to write a constructor without making a call to any <code>super()</code> constructor. Basically, we can use the constructor but should pass our variables with <code>super</code> and then create our own instance of the class with the same attributes.</p>
+    <pre><code>class Pho extends Noodle {
+        public Pho() {
+            super(30.0, 0.64, "flat", "rice flour");
+        }
+    }
+    </code></pre>
+    <p><strong>Example usage in <code>main</code>:</strong></p>
+    <pre><code>public class Main {
+        public static void main(String[] args) {
+            Pho phoChay = new Pho();
+            System.out.println(phoChay.shape);
+        }
+    }
+    </code></pre>
+    
+    <p>And the <code>Noodle</code> class:</p>
+    <pre><code>class Noodle {
+        double lengthInCentimeters;
+        double widthInCentimeters;
+        String shape;
+        String ingredients;
+        String texture = "brittle";
+        
+        Noodle(double lenInCent, double wthInCent, String shp, String ingr) {
+            this.lengthInCentimeters = lenInCent;
+            this.widthInCentimeters = wthInCent;
+            this.shape = shp;
+            this.ingredients = ingr;
+        }
+        
+        public void cook() {
+            this.texture = "cooked";
+        }
+    }
+    </code></pre>
+    
+    <h2>Access Modifiers and <code>final</code> Keyword</h2>
+    <pre><code>class Shape {
+        protected double perimeter;
+    }
+    // Any child class of Shape can access perimeter
+    </code></pre>
+    
+    <p>In addition to access modifiers, there’s another way to establish how child classes can interact with inherited parent class members: using the <code>final</code> keyword. If we add <code>final</code> after a parent class method’s access modifier, we disallow any child classes from changing that method. This is helpful in limiting bugs that might occur from modifying a particular method.</p>
+    <p>Though it is not required, there is an established order when two or more field modifiers are used (e.g., <code>public final</code>). To learn more about this, read the documentation.</p>
+    <p>By using the <code>FINAL</code> keyword, we prevent inheritance or changes to certain methods or variables, maintaining consistent behavior across subclasses.</p>
+    <h2>Polymorphism</h2>
+    <p>In Java, if <code>Orange</code> is a <code>Fruit</code> through inheritance, you can then use <code>Orange</code> in the same contexts as <code>Fruit</code>, like this:</p>
+    <pre><code>String makeJuice(Fruit fruit) {
+        return "Apple juice and " + fruit.squeeze();
+    }
+    
+    // inside main()
+    Orange orange = new Orange();
+    System.out.println(juicer.makeJuice(orange));
+    </code></pre>
+    <p>Wait, how does that work?</p>
+    <p>This is because Java incorporates the object-oriented programming principle of polymorphism. Polymorphism, which derives from Greek meaning “many forms”, allows a child class to share the information and behavior of its parent class while also incorporating its own functionality.</p>
+    
+    <p>The main advantages of polymorphic programming include:</p>
+    <ul>
+        <li>Simplifying syntax</li>
+        <li>Reducing cognitive overload for developers</li>
+    </ul>
+    <p>These benefits are particularly helpful when we want to develop our own Java packages for other developers to import and use.</p>
+    <p>For example, the built-in operator <code>+</code> can be used for both <code>doubles</code> and <code>ints</code>. To the computer, the <code>+</code> means something like <code>addDouble()</code> for one and <code>addInt()</code> for the other, but the creators of Java (and of other languages) didn’t want to burden us as developers with recalling each individual method.</p>
+    <p>Note that the reverse situation is not true; you cannot use a generic parent class instance where a child class instance is required. So an <code>Orange</code> can be used as a <code>Fruit</code>, but a <code>Fruit</code> cannot be used as an <code>Orange</code>.</p>
+    
+    <p>The method parameter <code>Fruit fruit</code> allows the <code>makeJuice</code> method to accept any kind of <code>Fruit</code> (including <code>Orange</code>, <code>Apple</code>, etc.), and it uses the correct <code>squeeze()</code> method based on the actual object type (in this case, <code>Orange</code>). This is made possible by inheritance and polymorphism.</p>
+    
+    <h3>Method Overriding</h3>
+    <p>One common use of polymorphism with Java classes is something we mentioned earlier — overriding parent class methods in a child class. Like the <code>+</code> operator, we can give a single method slightly different meanings for different classes. This is useful when we want our child class method to have the same name as a parent class method but behave a bit differently in some way.</p>
+    <p>Notice that in order to properly override <code>printBalance()</code> in <code>CheckingAccount</code>, the method has the following in common with the corresponding method in <code>BankAccount</code>:</p>
+    <ul>
+        <li>Method name</li>
+        <li>Return type</li>
+        <li>Number and type of parameters</li>
+    </ul>
+    <p>You may have also noticed the <code>@Override</code> keyword above <code>printBalance()</code> in <code>CheckingAccount</code>. This annotation informs the compiler that we want to override a method in the parent class. If the method doesn’t exist in the parent class, we’ll get a helpful error when we compile the program.</p>
+    
+    <pre><code>class BankAccount {
+        protected double balance;
+    
+        public BankAccount(double balanceIn) {
+            balance = balanceIn;
+        }
+    
+        public void printBalance() {
+            System.out.println("Your account balance is $" + balance);
+        }
+    }
+    
+    class CheckingAccount extends BankAccount {
+        public CheckingAccount(double balance) {
+            super(balance);
+        }
+    
+        @Override
+        public void printBalance() {
+            System.out.println("Your checking account balance is $" + balance);
+        }
+    }
+    </code></pre>
+    
+    <p><strong>Practice</strong></p>
+    <pre><code>@Override 
+    public void cook() {
+        System.out.println("Grinding or scraping the dough into the pot of boiling water.");
+        this.texture = "cooked";
+        System.out.println("Boiling");
+    }
+    </code></pre>
+    
+    <h3>Using a Child Class as its Parent Class</h3>
+    <p>An important facet of polymorphism is the ability to use a child class object where an object of its parent class is expected.</p>
+    <p>One way to do this explicitly is to instantiate a child class object as a member of the parent class. We can instantiate a <code>CheckingAccount</code> object as a <code>BankAccount</code> like this:</p>
+    <pre><code>BankAccount kaylasAccount = new CheckingAccount(600.00);
+    </code></pre>
+    <p>We can use <code>kaylasAccount</code> as if it were an instance of <code>BankAccount</code>, in any situation where a <code>BankAccount</code> object would be expected. (This would be true even if <code>kaylasAccount</code> were instantiated as a <code>CheckingAccount</code>, but using the explicit child-as-parent syntax is most helpful when we want to declare objects in bulk.)</p>
+    <p>It is important to note here that the compiler just considers <code>kaylasAccount</code> to be any old <code>BankAccount</code>. But because method overriding is handled at runtime, if we call <code>printBalance()</code>, we’ll see something <code>CheckingAccount</code>-specific:</p>
+    <p><strong>Output:</strong> <code>Your checking account balance is $600.00</code></p>
+    <p>This is because at runtime, <code>kaylasAccount</code> is recognized as the <code>CheckingAccount</code> it is. So, what if <code>CheckingAccount</code> has a method <code>transferToSavings()</code> that <code>BankAccount</code> does not have? Can <code>kaylasAccount</code> still use that method?</p>
+    <p>Well, no. The compiler believes that <code>kaylasAccount</code> is just a <code>BankAccount</code> that doesn’t have some fancy child class <code>transferToSavings()</code> method, so it would throw an error.</p>
+    
+    <p><strong>Using Child Classes in Arrays and ArrayLists</strong></p>
+    <p>Usually, when we create an array or an ArrayList, the list items all need to be the same type. But polymorphism puts a new spin on what is considered the same type…</p>
+    <p>In fact, we can put instances of different classes that share a parent class together in an array or ArrayList! For example, let’s say we have a <code>Monster</code> parent class with a few child classes: <code>Vampire</code>, <code>Werewolf</code>, and <code>Zombie</code>. We can set up an array with instances of each:</p>
+    <pre><code>Monster dracula, wolfman, zombie1;
+    
+    dracula = new Vampire();
+    wolfman = new Werewolf();
+    zombie1 = new Zombie();
+    
+    Monster[] monsters = {dracula, wolfman, zombie1};
+    </code></pre>
+    <p>We can even iterate through the list of items — regardless of subclass — and perform the same action with each item:</p>
+    <pre><code>for (Monster monster : monsters) {
+        monster.attack();
+    }
+    </code></pre>
+    
+    <h3>Child Classes in Method Parameters</h3>
+    <p>When we call a method that contains parameters, the arguments we place in our method call must match the parameter type. Similar to the previous exercise, polymorphism gives us a little more flexibility with the arguments we can use.</p>
+    <p>If we use a superclass reference as a method parameter, we can call the method using subclass reference arguments!</p>
+    
+    <pre><code>class ScaryStory {
+        Monster monster;
+        String setting;
+    
+        public ScaryStory(Monster antagonist, String place) {
+            monster = antagonist;
+            setting = place;
+        }
+    
+        public void tellStory() {
+            System.out.println("Once upon a time, " + monster.name + " was at " + setting + " looking to scare some mortals.");
+        }
+    
+        public static void main(String[] args) {
+            Monster dracula;
+            dracula = new Vampire("Dracula");
+            ScaryStory countDracula = new ScaryStory(dracula, "Dracula Castle");
+            countDracula.tellStory();
+        }
+    }
+    </code></pre>
+    <p><strong>Explanation:</strong></p>
+    <ol>
+        <li><strong>Dependency:</strong> The <code>ScaryStory</code> class requires a <code>Monster</code> object to be instantiated. This means that <code>ScaryStory</code> depends on the <code>Monster</code> class to function properly. The <code>monster</code> field is declared as type <code>Monster</code>, which allows you to pass any object that is a subclass of <code>Monster</code> (like <code>Vampire</code>, <code>Werewolf</code>, etc.) when creating a <code>ScaryStory</code> instance.</li>
+        <li><strong>Constructor:</strong> The constructor <code>public ScaryStory(Monster antagonist, String place)</code> takes a <code>Monster</code> object as a parameter. This is how <code>ScaryStory</code> can receive any kind of monster (such as <code>Vampire</code>), making the class flexible and able to work with different types of monsters.</li>
+        <li><strong>Usage of Monster Class:</strong> Since <code>Monster</code> is a public class, you can create instances of it and pass those instances to other classes (like <code>ScaryStory</code>). This allows you to create diverse stories involving different monsters.</li>
+    </ol>
+    
+    <h2>Debugging</h2>
+    <h3>Runtime Errors</h3>
+    <ul>
+        <li><strong>Runtime errors:</strong> Happen during execution of code, like division by zero.</li>
+        <li><strong>Syntax errors:</strong> Compile errors like omission of semicolon and brackets.</li>
+    </ul>
+    <p>In the last exercise, when we were dealing with run-time errors, you might’ve noticed a new word in the error message: “<strong>Exception</strong>”. Java uses exceptions to handle errors and other exceptional events. Exceptions are the conditions that occur at runtime and may cause the termination of the program.</p>
+    <p>When an exception occurs, Java displays a message that includes the name of the exception, the line of the program where the exception occurred, and a <strong>stack trace</strong>. The stack trace includes:</p>
+    <ul>
+        <li>The method that was running</li>
+        <li>The method that invoked it</li>
+        <li>The method that invoked that one</li>
+        <li>and so on…</li>
+    </ul>
+    <p>Make sure to examine it.</p>
+    <p>Some common exceptions that you will see in the wild:</p>
+    <ul>
+        <li><strong>ArithmeticException:</strong> Something went wrong during an arithmetic operation; for example, division by zero.</li>
+        <li><strong>NullPointerException:</strong> You tried to access an instance variable or invoke a method on an object that is currently null.</li>
+        <li><strong>ArrayIndexOutOfBoundsException:</strong> The index you are using is either negative or greater than the last index of the array (i.e., <code>array.length - 1</code>).</li>
+        <li><strong>FileNotFoundException:</strong> Java didn’t find the file it was looking for.</li>
+    </ul>
+    
+    <h3>Exception Handling</h3>
+    <p>Exception handling is an essential feature of Java programming that allows us to use run-time error exceptions to make our debugging process a little easier.</p>
+    <p>One way to handle exceptions is using the <code>try/catch</code>:</p>
+    <ul>
+        <li>The <code>try</code> statement allows you to define a block of code to be tested for errors while it is being executed.</li>
+        <li>The <code>catch</code> statement allows you to define a block of code to be executed if an error occurs in the try block.</li>
+    </ul>
+    <p>The <code>try</code> and <code>catch</code> keywords come in pairs, though you can also catch several types of exceptions in a single block:</p>
+    
+    <pre><code>try {
+        //  Block of code to try
+    } catch (NullPointerException e) {
+        // Print the error message like this:
+        System.err.println("NullPointerException: " + e.getMessage());
+        // Or handle the error another way here
+    }
+    </code></pre>
+    
+    <p>Notice how we used <code>System.err.println()</code> here instead of <code>System.out.println()</code>. <code>System.err.println()</code> will print to the standard error and the text will be in red.</p>
+    
+    <pre><code>public class Main {
+        public static void main(String[] args) {
+            int width = 0;
+            int length = 40;
+    
+            try {
+                int ratio = length / width;
+            } catch (ArithmeticException e) {
+                System.err.println("ArithmeticException: " + e.getMessage());
+            }
+        }
+    }
+    </code></pre>
+    
+    <h3>Some Common Logic Errors</h3>
+    <ul>
+        <li>Program logic is flawed</li>
+        <li>Some “silly” mistake in an <code>if</code> statement or a <code>for/while</code> loop</li>
+    </ul>
+    <p><strong>Note:</strong> Logic errors don’t have error messages. Sometimes, programmers use a process called <strong>test-driven development (TDD)</strong>, a way to give logic errors error messages and save yourself a lot of headaches!</p>
+    
+    <h3>Debugging Techniques</h3>
+    <ol>
+        <li><strong>Divide and conquer:</strong> Comment out or temporarily delete half the code to isolate an issue.
+            <ul>
+                <li>If the program compiles now, you know the error is in the code you deleted. Bring back about half of what you removed and repeat.</li>
+                <li>If the program still doesn’t compile, the error must be in the code that remains. Delete about half of the remaining code and repeat.</li>
+            </ul>
+        </li>
+        <li><strong>Print statements for the rescue:</strong> Use <code>System.out.println()</code> to check variable/return values at various points throughout the program.
+            <ul>
+                <li>A lot of the time with logic errors, there was a flawed piece of logic, a miscalculation, a missing step, etc. By printing out the values at different stages of the execution flow, you can then hopefully pinpoint where you made a mistake.</li>
+            </ul>
+        </li>
+    </ol>
+    
+    <h3>How to Get Input</h3>
+    <p><code>Scanner keyboard = new Scanner(System.in);</code></p>
+        
+</body>
+</html>
